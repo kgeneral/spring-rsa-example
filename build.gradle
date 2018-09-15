@@ -33,7 +33,7 @@ dependencies {
 	compile("commons-io:commons-io:2.6")
 	compile("commons-codec:commons-codec:1.11")
 
-
+	compile("org.projectlombok:lombok:1.18.2")
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
