@@ -1,6 +1,8 @@
 package com.dykim.crypto.rsa;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.security.crypto.encrypt.TextEncryptor;
+import org.springframework.security.rsa.crypto.RsaRawEncryptor;
 
 import java.io.File;
 import java.math.BigInteger;
@@ -9,6 +11,8 @@ import java.security.spec.RSAPrivateKeySpec;
 import java.security.spec.RSAPublicKeySpec;
 import java.util.Arrays;
 import java.util.List;
+
+import static com.dykim.crypto.rsa.Utils.print;
 
 public class EncryptionService {
 
@@ -54,5 +58,14 @@ public class EncryptionService {
         return null;
     }
 
+    public static void main(String[] args) {
+        EncryptionService encryptionService = new EncryptionService();
+        EncryptedData encryptedData = encryptionService.readEncryptedData();
 
+        TextEncryptor decryptor = new RsaRawEncryptor("UTF-8", encryptedData.getPublicKey(), encryptedData.getPrivateKey());
+
+        print(
+                decryptor.decrypt(encryptedData.getUsername()), decryptor.decrypt(encryptedData.getPassword())
+        );
+    }
 }

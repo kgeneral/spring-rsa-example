@@ -10,9 +10,8 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
-import java.util.Arrays;
 
-import static java.util.stream.Collectors.joining;
+import static com.dykim.crypto.rsa.Utils.print;
 
 @SpringBootApplication
 public class RsaApplication implements CommandLineRunner {
@@ -49,11 +48,5 @@ public class RsaApplication implements CommandLineRunner {
         String decryptedPassword = decryptor.decrypt(encryptedData.getPassword());
 
         print(username, password, decryptedUsername, decryptedPassword);
-    }
-
-    public static void print(Object... o) {
-        System.out.println(
-                Arrays.stream(o).map(Object::toString).collect(joining(","))
-        );
     }
 }
