@@ -23,8 +23,8 @@ public class RsaApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        String username = "garlic_pepper_sandwich";
-        String password = "john.wick";
+        String username = args[0];
+        String password = args[1];
 
         EncryptionService encryptionService = new EncryptionService();
 
